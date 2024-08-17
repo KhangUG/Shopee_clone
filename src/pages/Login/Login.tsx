@@ -36,7 +36,7 @@ export default function Register() {
               <div className='flex item-center justify-center mt-8'>
                 <span className='text-gray-400'>Bạn chưa có tài khoản?</span>
                 <Link className='text-red-400 ml-1' to='/register'>
-                  Đăng ký
+                  Đăng ký hehe
                 </Link>
               </div>
             </form>
