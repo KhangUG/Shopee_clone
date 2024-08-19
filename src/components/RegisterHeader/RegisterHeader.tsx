@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function RegisterHeader() {
   return (
     <header className='py-5'>
-      <div className='max-w-7xl mx-auto px4'>
+      <div className='container'>
         <nav className='flex items-end'>
           <Link to='/'>
             <svg viewBox='0 0 192 65' className=' pl-4 h-8 lg:h-11 fill-orange'>
