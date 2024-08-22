@@ -17,6 +17,7 @@ export default function Register() {
     register,
     handleSubmit,
     watch,
+    setError,
     getValues,
     formState: { errors }
   } = useForm<FormData>()
@@ -31,6 +32,9 @@ export default function Register() {
     registerAccountMutation.mutate(body, {
       onSuccess: (data) => {
         console.log(data)
+      },
+      onError: (error) => {
+        console.log('error')
       }
     })
   })
