@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { useMutation } from '@tanstack/react-query'
 import { getRules } from 'src/utils/rules'
 import Input from 'src/components/Input'
+import { registerAccount } from 'src/api/auth.api'
+import { omit } from 'lodash'
 
 interface FormData {
   email: string
   password: string
-
   confirm_password: string
 }
 
@@ -17,18 +19,21 @@ export default function Register() {
     watch,
     getValues,
     formState: { errors }
-  } = useForm()
+  } = useForm<FormData>()
 
+  const registerAccountMutation = useMutation({
+    mutationFn: (body: Omit<FormData, 'confirm_password'>) => registerAccount(body)
+  })
   const rules = getRules(getValues)
-  const onSubmit = handleSubmit(
-    (data) => {
-      // console.log(data)
-    },
-    (data) => {
-      const password = getValues('password')
-      // console.log(password)
-    }
-  )
+
+  const onSubmit = handleSubmit((data) => {
+    const body = omit(data, ['confirm_password'])
+    registerAccountMutation.mutate(body, {
+      onSuccess: (data) => {
+        console.log(data)
+      }
+    })
+  })
 
   // const email = watch('email')
 
